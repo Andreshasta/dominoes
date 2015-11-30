@@ -40,6 +40,7 @@ public class MenuIngreso extends JFrame implements ActionListener, ChangeListene
     private boolean iniCliente;
     private String IP;
     private PuntajesMaximos pm;
+    private Tutorial tu;
 
     public MenuIngreso() {
         setTitle("Ingreso juego");
@@ -136,8 +137,10 @@ public class MenuIngreso extends JFrame implements ActionListener, ChangeListene
             pm = new PuntajesMaximos();
         }
         if (e.getActionCommand() == "TUTORIAL") {
+       tu = new Tutorial();
         }
         if (e.getActionCommand() == "CREDITOS") {
+            
         }
     }
 
