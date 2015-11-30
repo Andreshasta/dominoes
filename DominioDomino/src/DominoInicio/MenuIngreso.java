@@ -11,86 +11,146 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class MenuIngreso extends JFrame implements ActionListener, ChangeListener {
 
-    private JPanel contentPane;
+    private JPanel jpContentPane;
     private JCheckBox isServidor;
     private JCheckBox isCliente;
-    private JButton iniciar;
-    private JLabel txAIniciar;
-    JPanel panel;
-    boolean iniServidor;
-    boolean iniCliente;
+    private JButton jbIniciar;
+    private JButton jbMaxPuntajes;
+    private JButton jbTutorial;
+    private JButton jbCreditos;
+    private JButton jbSalir;
+    private JLabel lbAIniciar;
+    private JPanel jpPanel1;
+    private JPanel jpPanel2;
+    private JTextField txDireccion;
+    private boolean iniServidor;
+    private boolean iniCliente;
+    private String IP;
 
     public MenuIngreso() {
         setTitle("Ingreso juego");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        contentPane.setLayout(new BorderLayout(0, 0));
-        setContentPane(contentPane);
-        
-        iniServidor= false;
+        jpContentPane = new JPanel();
+        jpContentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        jpContentPane.setLayout(new BorderLayout(0, 0));
+        setContentPane(jpContentPane);
+
+        iniServidor = false;
         iniCliente = false;
-        
-        panel = new JPanel();
-        panel.setLayout(new GridLayout(3, 2));
+
+        jpPanel1 = new JPanel();
+        jpPanel1.setLayout(new GridLayout(8, 1));
+        jpPanel2 = new JPanel();
+        jpPanel2.setLayout(new GridLayout(1, 2));
         isServidor = new JCheckBox("Servidor");
         isServidor.addChangeListener(this);
         isCliente = new JCheckBox("Cliente");
         isCliente.addChangeListener(this);
-        iniciar = new JButton("Inicar juego");
-        iniciar.setActionCommand("INICIAR");
-        iniciar.addActionListener(this);
-        iniciar.setEnabled(false);
-        txAIniciar = new JLabel("");
-        panel.add(isServidor);
-        panel.add(iniciar);
-        panel.add(isCliente);
-        panel.add(txAIniciar);
-        contentPane.add(panel);
+        jbIniciar = new JButton("INICIAR JUEGO");
+        jbIniciar.setActionCommand("INICIAR");
+        jbIniciar.addActionListener(this);
+        jbIniciar.setEnabled(false);
+
+        jbMaxPuntajes = new JButton("Max. Puntajes");
+        jbMaxPuntajes.setActionCommand("MAXIMOS");
+        jbMaxPuntajes.addActionListener(this);
+        jbMaxPuntajes.setEnabled(true);
+
+        jbTutorial = new JButton("Tutorial");
+        jbTutorial.setActionCommand("TUTORIAL");
+        jbTutorial.addActionListener(this);
+        jbTutorial.setEnabled(true);
+
+        jbCreditos = new JButton("Creditos");
+        jbCreditos.setActionCommand("CREDITOS");
+        jbCreditos.addActionListener(this);
+        jbCreditos.setEnabled(true);
+
+        jbSalir = new JButton("Salir");
+        jbSalir.setActionCommand("SALIR");
+        jbSalir.addActionListener(this);
+        jbSalir.setEnabled(true);
+        
+        lbAIniciar = new JLabel("");
+        txDireccion = new JTextField("");
+        txDireccion.setEnabled(false);
+
+        jpPanel2.add(isServidor);
+        jpPanel2.add(isCliente);
+        jpPanel1.add(jpPanel2);
+        jpPanel1.add(txDireccion);
+        jpPanel1.add(jbIniciar);
+        jpPanel1.add(lbAIniciar);
+        jpPanel1.add(jbMaxPuntajes);
+        jpPanel1.add(jbTutorial);
+        jpPanel1.add(jbCreditos);
+        jpPanel1.add(jbSalir);
+        jpContentPane.add(jpPanel1);
         this.pack();
         this.setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand() == "INICIAR"){
-            System.out.println("servidor: "+iniServidor + " cliente: "+iniCliente);
+        if (e.getActionCommand()=="SALIR"){
+            System.exit(0);
+        }
+        if (e.getActionCommand() == "INICIAR") {
+            System.out.println("servidor: " + iniServidor + " cliente: " + iniCliente);
             InicioServidor server1 = new InicioServidor();
             InicioCliente cliente = new InicioCliente();
-            if (iniServidor){
+            if (iniServidor) {
                 Ejecutor.ejecutar(server1);
             }
-            if (iniCliente){
+            if (iniCliente) {
                 Ejecutor.ejecutar(cliente);
             }
+            dispose();
+        }
+        if (e.getActionCommand() =="MAXIMOS"){
+            
+        }
+        if (e.getActionCommand() =="TUTORIAL"){
+        }
+        if (e.getActionCommand() =="CREDITOS"){
         }
     }
 
     @Override
     public void stateChanged(ChangeEvent e) {
         if (isServidor.isSelected()) {
-            txAIniciar.setText("Servidor");
-            iniServidor= true;
+            lbAIniciar.setText("Servidor");
+            iniServidor = true;
         } else {
-            txAIniciar.setText("");
+            lbAIniciar.setText("");
             iniServidor = false;
         }
         if (isCliente.isSelected()) {
-            if (txAIniciar.getText().length() != 0){
-                txAIniciar.setText(txAIniciar.getText() + " + ");
+            if (lbAIniciar.getText().length() != 0) {
+                lbAIniciar.setText(lbAIniciar.getText() + " + ");
             }
-            txAIniciar.setText(txAIniciar.getText() + " Cliente");
+            lbAIniciar.setText(lbAIniciar.getText() + " Cliente");
             iniCliente = true;
-        }else{
+        } else {
             iniCliente = false;
         }
         //panel.repaint();
-        iniciar.setEnabled((iniServidor || iniCliente));
+        jbIniciar.setEnabled((iniServidor || iniCliente));
+        if (((iniServidor || iniCliente) && iniCliente) && (!iniServidor)) {
+            txDireccion.setEnabled(true);
+        } else {
+            txDireccion.setEnabled(false);
+            if (iniServidor) {
+                IP = DatosServidor.consultaIPServidor();
+                txDireccion.setText(IP);
+            }
+        }
     }
 }
