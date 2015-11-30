@@ -41,16 +41,13 @@ import java.awt.event.ActionEvent;
 
 public class JuegoUI extends JFrame {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = -3028719584988240249L;
 
     private JPanel contentPane;
 
-    private JList list;
-    private JList list_left;
-    private JList list_right;
+    private JList lista;
+    private JList listaIzquierda;
+    private JList listaDerecha;
 
     private JButton btnPonerDerecha;
     private JButton btnPonerIzquierda;
@@ -70,6 +67,8 @@ public class JuegoUI extends JFrame {
     private String player1;
     private String player2;
     private String player3;
+    //PanelOverDraw lblmesa;
+    JLabel lblmesa;
 
     private Administrador administra;
     private final JTextArea textArea = new JTextArea();
@@ -301,11 +300,11 @@ public class JuegoUI extends JFrame {
         recorre.setBounds(212, 11, 193, 78);
         panelInferior.add(recorre);
 
-        list = new JList(DominoForListModel(administra.getRoom().getPlayer(me).getDominos()));
-        recorre.setViewportView(list);
-        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        list.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-        list.setAutoscrolls(true);
+        lista = new JList(DominoForListModel(administra.getRoom().getPlayer(me).getDominos()));
+        recorre.setViewportView(lista);
+        lista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        lista.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+        lista.setAutoscrolls(true);
 
         btnPonerIzquierda = new JButton("Poner izquierda");
         btnPonerIzquierda.addActionListener(new ActionListener() {
@@ -356,11 +355,12 @@ public class JuegoUI extends JFrame {
         panelInferior.add(btnPasar);
 
         //Etiqueta con imagen de mesa
-        JLabel lblmesa = new JLabel();
+        lblmesa = new JLabel();
         lblmesa.setBounds(1, 1, 779, 336);
-
         //lblmesa.setIcon(new ImageIcon(getClass().getResource("/DominoCliente/images/border.png")));
         lblmesa.setIcon(new ImageIcon(getClass().getResource(Parametros.PATH_IMAGES + "border.png")));
+        //lblmesa = new PanelOverDraw();
+        //lblmesa.setBounds(1, 1, 779, 336);
 
         //Panel central con  imagen de mesa
         JPanel panelCenter = new JPanel();
@@ -376,15 +376,15 @@ public class JuegoUI extends JFrame {
         recorre_1.setBounds(90, 69, 170, 183);
         lblmesa.add(recorre_1);
 
-        list_left = new JList(BoardLeftList());
-        recorre_1.setViewportView(list_left);
+        listaIzquierda = new JList(BoardLeftList());
+        recorre_1.setViewportView(listaIzquierda);
 
         JScrollPane recorre_2 = new JScrollPane();
         recorre_2.setBounds(324, 67, 154, 189);
         lblmesa.add(recorre_2);
 
-        list_right = new JList(BoardRightList());
-        recorre_2.setViewportView(list_right);
+        listaDerecha = new JList(BoardRightList());
+        recorre_2.setViewportView(listaDerecha);
 
         JLabel lblLeft = new JLabel("Izquierda");
         lblLeft.setBounds(92, 50, 46, 14);
@@ -417,7 +417,6 @@ public class JuegoUI extends JFrame {
         if (dob != null) {
             model.add(0, dob.getDomino());
             int i = 1;
-
             while (!sigue) {
                 dob = dob.getLeft();
                 if (dob != null) {
@@ -428,7 +427,12 @@ public class JuegoUI extends JFrame {
                 }
             }
         }
-
+        /*Tablero obj = dob;
+        while (obj != null) {
+            lblmesa.addListIzq(obj.getDomino());
+            obj = obj.getLeft();
+        }*/
+        
         return model;
     }
 
@@ -457,13 +461,13 @@ public class JuegoUI extends JFrame {
     }
 
     private void ponerIzquierda() {
-        Domino x = (Domino) list.getSelectedValue();
+        Domino x = (Domino) lista.getSelectedValue();
         administra.putOnBoard(x, Parametros.LEFT, me);
         actualizar();
     }
 
     private void ponerderecha() {
-        Domino x = (Domino) list.getSelectedValue();
+        Domino x = (Domino) lista.getSelectedValue();
         administra.putOnBoard(x, Parametros.RIGHT, me);
         actualizar();
     }
@@ -482,23 +486,21 @@ public class JuegoUI extends JFrame {
 
     private String DominoForLabel(List<Domino> dominos) {
         String result = "";
-
         for (Domino d : dominos) {
             result += d.getSide1() + "x" + d.getSide2() + "   |   ";
         }
-
         return result;
     }
 
-    private void enabled() {
-        list.setEnabled(true);
+    private void habilitado() {
+        lista.setEnabled(true);
         btnPonerIzquierda.setEnabled(true);
         btnPonerDerecha.setEnabled(true);
         btnPasar.setEnabled(true);
     }
 
-    private void disabled() {
-        list.setEnabled(false);
+    private void deshabilitado() {
+        lista.setEnabled(false);
         btnPonerIzquierda.setEnabled(false);
         btnPonerDerecha.setEnabled(false);
         btnPasar.setEnabled(false);
@@ -507,11 +509,11 @@ public class JuegoUI extends JFrame {
     private void actualizar() {
 
         if (administra.finishedGame()) {
-            disabled();
+            deshabilitado();
         } else if (administra.isMyTurn()) {
-            enabled();
+            habilitado();
         } else {
-            disabled();
+            deshabilitado();
         }
 
         String msg = "";
@@ -525,9 +527,9 @@ public class JuegoUI extends JFrame {
 
         textArea.setText(msg);
 
-        list.setModel(DominoForListModel(administra.getRoom().getPlayer(me).getDominos()));
-        list_left.setModel(BoardLeftList());
-        list_right.setModel(BoardRightList());
+        lista.setModel(DominoForListModel(administra.getRoom().getPlayer(me).getDominos()));
+        listaIzquierda.setModel(BoardLeftList());
+        listaDerecha.setModel(BoardRightList());
         btnPonerEnTablero.setEnabled(administra.getRoom().getDominosAvailable().size() > 0);
         QtdDominoPlayer1.setText("Ficha: " + administra.getRoom().getPlayer(administra.getRoom().getPlayer(player1).getUsername()).getDominos().size());
         QtdDominoPlayer2.setText("Ficha: " + administra.getRoom().getPlayer(administra.getRoom().getPlayer(player2).getUsername()).getDominos().size());
