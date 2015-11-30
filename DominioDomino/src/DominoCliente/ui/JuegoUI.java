@@ -74,24 +74,6 @@ public class JuegoUI extends JFrame {
     private Administrador administra;
     private final JTextArea textArea = new JTextArea();
 
-    /**
-     * Launch the application.
-     */
-    /*public static void main(String[] args) {
-     EventQueue.invokeLater(new Runnable() {
-     public void run() {
-     try {
-     JuegoUI frame = new JuegoUI(new Administrador());
-     frame.setVisible(true);
-     } catch (Exception e) {
-     e.printStackTrace();
-     }
-     }
-     });
-     }*/
-    /**
-     * Create the frame.
-     */
     public JuegoUI(Administrador administra) {
 
         this.administra = administra;
@@ -113,7 +95,6 @@ public class JuegoUI extends JFrame {
 
         Color color = new Color(255, 255, 255);
 
-        //Labels com as imagens das peças Panel oeste
         lblpieceW1 = new JLabel();
         lblpieceW2 = new JLabel();
         lblpieceW3 = new JLabel();
@@ -130,15 +111,6 @@ public class JuegoUI extends JFrame {
         lblpieceW6.setBounds(15, 247, 62, 27);
         lblpieceW7.setBounds(15, 277, 62, 27);
 
-        /*
-         lblpieceW1.setIcon(new ImageIcon(getClass().getResource("../../DominoCliente/images/pieceh.png")));
-         lblpieceW2.setIcon(new ImageIcon(getClass().getResource("../../DominoCliente/images/pieceh.png")));
-         lblpieceW3.setIcon(new ImageIcon(getClass().getResource("../../DominoCliente/images/pieceh.png")));
-         lblpieceW4.setIcon(new ImageIcon(getClass().getResource("../../DominoCliente/images/pieceh.png")));
-         lblpieceW5.setIcon(new ImageIcon(getClass().getResource("../../DominoCliente/images/pieceh.png")));
-         lblpieceW6.setIcon(new ImageIcon(getClass().getResource("../../DominoCliente/images/pieceh.png")));
-         lblpieceW7.setIcon(new ImageIcon(getClass().getResource("../../DominoCliente/images/pieceh.png")));	
-         */
         lblpieceW1.setIcon(new ImageIcon(getClass().getResource(Parametros.PATH_IMAGES + "pieceh.png")));
         lblpieceW2.setIcon(new ImageIcon(getClass().getResource(Parametros.PATH_IMAGES + "pieceh.png")));
         lblpieceW3.setIcon(new ImageIcon(getClass().getResource(Parametros.PATH_IMAGES + "pieceh.png")));
@@ -173,7 +145,7 @@ public class JuegoUI extends JFrame {
         QtdDominoPlayer1.setBounds(10, 39, 80, 14);
         panelWest.add(QtdDominoPlayer1);
 
-        //Labels com as imagens das pecas Panel norte
+        //ETIQUETAS Panel norte
         lblpieceN1 = new JLabel();
         lblpieceN2 = new JLabel();
         lblpieceN3 = new JLabel();
@@ -190,15 +162,6 @@ public class JuegoUI extends JFrame {
         lblpieceN6.setBounds(250, 15, 27, 62);
         lblpieceN7.setBounds(280, 15, 27, 62);
 
-        /*
-         lblpieceN1.setIcon(new ImageIcon(getClass().getResource("../../DominoCliente/images/piece.png")));		
-         lblpieceN2.setIcon(new ImageIcon(getClass().getResource("../../DominoCliente/images/piece.png")));
-         lblpieceN3.setIcon(new ImageIcon(getClass().getResource("../../DominoCliente/images/piece.png")));
-         lblpieceN4.setIcon(new ImageIcon(getClass().getResource("../../DominoCliente/images/piece.png")));
-         lblpieceN5.setIcon(new ImageIcon(getClass().getResource("../../DominoCliente/images/piece.png")));		
-         lblpieceN6.setIcon(new ImageIcon(getClass().getResource("../../DominoCliente/images/piece.png")));		
-         lblpieceN7.setIcon(new ImageIcon(getClass().getResource("../../DominoCliente/images/piece.png")));
-         */
         lblpieceN1.setIcon(new ImageIcon(getClass().getResource(Parametros.PATH_IMAGES + "piece.png")));
         lblpieceN2.setIcon(new ImageIcon(getClass().getResource(Parametros.PATH_IMAGES + "piece.png")));
         lblpieceN3.setIcon(new ImageIcon(getClass().getResource(Parametros.PATH_IMAGES + "piece.png")));
@@ -251,15 +214,6 @@ public class JuegoUI extends JFrame {
         lblpieceE6.setBounds(15, 247, 62, 27);
         lblpieceE7.setBounds(15, 277, 62, 27);
 
-        /*
-         lblpieceE1.setIcon(new ImageIcon(getClass().getResource("../../DominoCliente/images/pieceh.png")));
-         lblpieceE2.setIcon(new ImageIcon(getClass().getResource("../../DominoCliente/images/pieceh.png")));
-         lblpieceE3.setIcon(new ImageIcon(getClass().getResource("../../DominoCliente/images/pieceh.png")));
-         lblpieceE4.setIcon(new ImageIcon(getClass().getResource("../../DominoCliente/images/pieceh.png")));
-         lblpieceE5.setIcon(new ImageIcon(getClass().getResource("../../DominoCliente/images/pieceh.png")));
-         lblpieceE6.setIcon(new ImageIcon(getClass().getResource("../../DominoCliente/images/pieceh.png")));
-         lblpieceE7.setIcon(new ImageIcon(getClass().getResource("../../DominoCliente/images/pieceh.png")));
-         */
         lblpieceE1.setIcon(new ImageIcon(getClass().getResource(Parametros.PATH_IMAGES + "pieceh.png")));
         lblpieceE2.setIcon(new ImageIcon(getClass().getResource(Parametros.PATH_IMAGES + "pieceh.png")));
         lblpieceE3.setIcon(new ImageIcon(getClass().getResource(Parametros.PATH_IMAGES + "pieceh.png")));
@@ -312,15 +266,6 @@ public class JuegoUI extends JFrame {
         lblFichaS6.setBounds(152, 28, 27, 62);
         lblFichaS7.setBounds(182, 28, 27, 62);
 
-        /*
-         lblFichaS1.setIcon(new ImageIcon(getClass().getResource("../../DominoCliente/images/"+ administra.getRoom().getPlayer(me).getDominos().get(0).toString() + ".png")));
-         lblFichaS2.setIcon(new ImageIcon(getClass().getResource("../../DominoCliente/images/"+ administra.getRoom().getPlayer(me).getDominos().get(1).toString() + ".png")));
-         lblFichaS3.setIcon(new ImageIcon(getClass().getResource("../../DominoCliente/images/"+ administra.getRoom().getPlayer(me).getDominos().get(2).toString() + ".png")));
-         lblFichaS4.setIcon(new ImageIcon(getClass().getResource("../../DominoCliente/images/"+ administra.getRoom().getPlayer(me).getDominos().get(3).toString() + ".png")));
-         lblFichaS5.setIcon(new ImageIcon(getClass().getResource("../../DominoCliente/images/"+ administra.getRoom().getPlayer(me).getDominos().get(4).toString() + ".png")));
-         lblFichaS6.setIcon(new ImageIcon(getClass().getResource("../../DominoCliente/images/"+ administra.getRoom().getPlayer(me).getDominos().get(5).toString() + ".png")));
-         lblFichaS7.setIcon(new ImageIcon(getClass().getResource("../../DominoCliente/images/"+ administra.getRoom().getPlayer(me).getDominos().get(6).toString() + ".png")));
-         */
         lblFichaS1.setIcon(new ImageIcon(getClass().getResource(Parametros.PATH_IMAGES + administra.getRoom().getPlayer(me).getDominos().get(0).toString() + ".png")));
         lblFichaS2.setIcon(new ImageIcon(getClass().getResource(Parametros.PATH_IMAGES + administra.getRoom().getPlayer(me).getDominos().get(1).toString() + ".png")));
         lblFichaS3.setIcon(new ImageIcon(getClass().getResource(Parametros.PATH_IMAGES + administra.getRoom().getPlayer(me).getDominos().get(2).toString() + ".png")));

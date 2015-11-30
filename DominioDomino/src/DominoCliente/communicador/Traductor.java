@@ -67,12 +67,7 @@ public class Traductor {
 
                 case Acciones.LOGON_SUCESSFUL:
                     if (parameter instanceof Jugador) {
-                        /*
-                         * Jugador p = (Jugador) parameter; Jugador p1 = new Jugador();
-                         * p1.setLogin(p.getLogin()); p1.setDominos(p.getDominos());
-                         * p1.setToken(p.isToken()); p1.setTeste("cliente");
-                         * manager.getRoom().addPlayers(p1);
-                         */
+                      
                     }
                     break;
 

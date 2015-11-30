@@ -6,471 +6,373 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-
 /**
  * Represents the room game. All Actions must be do by a object of this class.
  * The manipulation of object (engine game) be diferents implements in the
  * server and client. Each have yours.
- * 
+ *
  */
 public class Sala implements Serializable {
 
-	private static final long serialVersionUID = -3183120280903804020L;
-	
-	private int id;
-	
-	// Players in room
-	private List<Jugador> jugadores;
+    private static final long serialVersionUID = -3183120280903804020L;
 
-	// Dominos available for jugadores
-	private List<Domino> dominosAvailable;
+    private int id;
 
-	// The central domino on board
-	private Tablero dominoCenter;
+    // Players in room
+    private List<Jugador> jugadores;
 
-	// Determines if the game started
-	private boolean gameStarted;
+    // Dominos available for jugadores
+    private List<Domino> dominosAvailable;
 
-	// Determines it the game finished
-	private boolean finishedGame;
+    // The central domino on board
+    private Tablero dominoCenter;
 
-	public Sala(int id) {
-		setPlayers(new ArrayList<Jugador>());
-		setDominosAvailable(new ArrayList<Domino>());
-		setGameStarted(false);
-		generateDominos();
-		this.id = id;
-	}
+    // Determines if the game started
+    private boolean gameStarted;
 
-	/**
-	 * Start the game
-	 */
-	public void start() {
-		giveDominos();
-		setGameStarted(true);
-	}
+    // Determines it the game finished
+    private boolean finishedGame;
 
-	/**
-	 * Add a player in room. However the room does not exceed the limit of
- jugadores.
-	 * 
-	 * @param player
-	 */
-	public void addPlayers(Jugador player) {
-		if (getPlayers().size() < Parametros.MAX_NUMBER_OF_PLAYERS) {
-			getPlayers().add(player);
-		}
-	}
+    public Sala(int id) {
+        setPlayers(new ArrayList<Jugador>());
+        setDominosAvailable(new ArrayList<Domino>());
+        setGameStarted(false);
+        generateDominos();
+        this.id = id;
+    }
 
-	/**
-	 * Defines the next player, according to the sequence.
-	 */
-	public void next() {
+    /**
+     * Start the game
+     */
+    public void start() {
+        giveDominos();
+        setGameStarted(true);
+    }
 
-		Jugador currentPlayer = whoIsPlaying();
-		Jugador nextPlayer = getNextPlayerById(currentPlayer.getId());
+    /**
+     * Add a player in room. However the room does not exceed the limit of
+     * jugadores.
+     *
+     * @param player
+     */
+    public void addPlayers(Jugador player) {
+        if (getPlayers().size() < Parametros.MAX_NUMBER_OF_PLAYERS) {
+            getPlayers().add(player);
+        }
+    }
 
-		currentPlayer.setToken(false);
-		nextPlayer.setToken(true);
+    /**
+     * Defines the next player, according to the sequence.
+     */
+    public void next() {
 
-	}
+        Jugador currentPlayer = whoIsPlaying();
+        Jugador nextPlayer = getNextPlayerById(currentPlayer.getId());
 
-	/**
-	 * Get next player in the sequence by current id.
-	 * 
-	 * @param id
-	 * @return next player
-	 */
-	public Jugador getNextPlayerById(int id) {
-		return getPlayerById(nextId(id));
-	}
+        currentPlayer.setToken(false);
+        nextPlayer.setToken(true);
 
-	/**
-	 * Get a player by username
-	 * 
-	 * @param username
-	 * @return player
-	 */
-	public Jugador getPlayer(String username) {
+    }
 
-		Jugador result = null;
+    /**
+     * Get next player in the sequence by current id.
+     *
+     * @param id
+     * @return next player
+     */
+    public Jugador getNextPlayerById(int id) {
+        return getPlayerById(nextId(id));
+    }
 
-		for (Jugador p : getPlayers()) {
-			if (p.getUsername().equals(username)) {
-				result = p;
-				break;
-			}
-		}
+    /**
+     * Get a player by username
+     *
+     * @param username
+     * @return player
+     */
+    public Jugador getPlayer(String username) {
 
-		return result;
-	}
+        Jugador result = null;
 
-	/**
-	 * Get a player by id
-	 * 
-	 * @param id
-	 * @return player
-	 */
-	public Jugador getPlayerById(int id) {
-		Jugador result = null;
+        for (Jugador p : getPlayers()) {
+            if (p.getUsername().equals(username)) {
+                result = p;
+                break;
+            }
+        }
 
-		for (Jugador p : getPlayers()) {
-			if (p.getId() == id) {
-				result = p;
-			}
-		}
+        return result;
+    }
 
-		return result;
-	}
+    public Jugador getPlayerById(int id) {
+        Jugador result = null;
 
-	/**
-	 * Put a domino in the board of room.
-	 * 
-	 * @param domino
-	 * @param side
-	 * @return true if the domino is on the board.
-	 */
-	private boolean putOnBoard(Domino domino, String side) {
+        for (Jugador p : getPlayers()) {
+            if (p.getId() == id) {
+                result = p;
+            }
+        }
 
-		boolean result = false;
-		Tablero newBoardNode = new Tablero(domino);
+        return result;
+    }
 
-		// Checks whether there are any domino on the board.
-		if (getDominoCenter() != null) {
+    private boolean putOnBoard(Domino domino, String side) {
 
-			Tablero lastBoardNode = getLastDominoBoard(side);
+        boolean result = false;
+        Tablero newBoardNode = new Tablero(domino);
 
-			// Checks if the moves is possible between two nodes
-			if (newBoardNode.defineSides(lastBoardNode, side)) {
+        if (getDominoCenter() != null) {
 
-				// Execute moviment
-				if (side.equals(Parametros.LEFT)
-						&& lastBoardNode.putOnLeft(newBoardNode)) {
-					result = true;
-				} else if (side.equals(Parametros.RIGHT)
-						&& lastBoardNode.putOnRight(newBoardNode)) {
-					result = true;
-				}
+            Tablero lastBoardNode = getLastDominoBoard(side);
 
-			}
+            if (newBoardNode.defineSides(lastBoardNode, side)) {
 
-		} else {
+                if (side.equals(Parametros.LEFT)
+                        && lastBoardNode.putOnLeft(newBoardNode)) {
+                    result = true;
+                } else if (side.equals(Parametros.RIGHT)
+                        && lastBoardNode.putOnRight(newBoardNode)) {
+                    result = true;
+                }
 
-			/*
-			 * If not exists put the central Domino on the board. In this case,
-			 * the sides of domino is not important.
-			 */
-			newBoardNode.setLeftSide(Parametros.SIDE1);
-			newBoardNode.setRightSide(Parametros.SIDE2);
-			setDominoCenter(newBoardNode);
-			result = true;
-		}
+            }
 
-		return result;
-	}
+        } else {
 
-	/**
-	 * From the central node gets the last node in the specified side.
-	 * 
-	 * @param side
-	 * @return the last node of the side
-	 */
-	private Tablero getLastDominoBoard(String side) {
+            newBoardNode.setLeftSide(Parametros.SIDE1);
+            newBoardNode.setRightSide(Parametros.SIDE2);
+            setDominoCenter(newBoardNode);
+            result = true;
+        }
 
-		// Get central node
-		Tablero lastBoard = getDominoCenter();
+        return result;
+    }
 
-		switch (side) {
-		case Parametros.LEFT:
-			while (lastBoard.getLeft() != null) {
-				lastBoard = lastBoard.getLeft();
-			}
-			break;
+    private Tablero getLastDominoBoard(String side) {
 
-		case Parametros.RIGHT:
-			while (lastBoard.getRight() != null) {
-				lastBoard = lastBoard.getRight();
-			}
-			break;
-		}
+        Tablero lastBoard = getDominoCenter();
 
-		return lastBoard;
-	}
+        switch (side) {
+            case Parametros.LEFT:
+                while (lastBoard.getLeft() != null) {
+                    lastBoard = lastBoard.getLeft();
+                }
+                break;
 
-	/**
-	 * Makes the initial distribution of dominos for jugadores. Each player must
-	 * have the same number of domino. The remainings should be available at the
-	 * table.
-	 */
-	private void giveDominos() {
+            case Parametros.RIGHT:
+                while (lastBoard.getRight() != null) {
+                    lastBoard = lastBoard.getRight();
+                }
+                break;
+        }
 
-		/*
-		 * Calculates the quantity of dominos by player. The value must be
-		 * truncated and integer to not miss dominos
-		 */
-		//int numberDominosByPlayer = (int) (getDominosAvailable().size() / jugadores.size());
-                int numberDominosByPlayer = Parametros.MAX_NUMBER_FICHAS_PLAYER;
+        return lastBoard;
+    }
 
-		/*
-		 * Control variables
-		 */
-		int biggestDomino = 0;
-		int biggestBushwacker = 0;
+    private void giveDominos() {
 
-		/*
-		 * The player that will start game
-		 */
-		Jugador last = null;
+        int numberDominosByPlayer = Parametros.MAX_NUMBER_FICHAS_PLAYER;
 
-		/*
-		 * Random sort dominos for each player.
-		 */
-		for (Jugador p : getPlayers()) {
-			Random random = new Random();
-			for (int i = 0; i < numberDominosByPlayer; i++) {
+        int biggestDomino = 0;
+        int biggestBushwacker = 0;
 
-				// Sort a available domino
-				int index = random.nextInt(getDominosAvailable().size());
-				Domino domino = getDominosAvailable().get(index);
+        Jugador last = null;
 
-				// move available domino to palyer
-				p.addDomino(domino);
-				getDominosAvailable().remove(index);
+        for (Jugador p : getPlayers()) {
+            Random random = new Random();
+            for (int i = 0; i < numberDominosByPlayer; i++) {
 
-				/*
-				 * Determines who will start the game. Starts who has the
-				 * largest Bushwacker.
-				 */
-				if (domino.getSide1() == domino.getSide2()
-						&& domino.getSide1() + domino.getSide2() > biggestBushwacker) {
-					biggestBushwacker = domino.getSide1() + domino.getSide2();
-					last = p;
-				}
+                int index = random.nextInt(getDominosAvailable().size());
+                Domino domino = getDominosAvailable().get(index);
 
-				/*
-				 * If no there Bushwacker raffled, start that has the domino
-				 * with the largest sum of sides.
-				 */
-				if (biggestBushwacker == 0
-						&& domino.getSide1() + domino.getSide2() > biggestDomino) {
-					biggestDomino = domino.getSide1() + domino.getSide2();
-					last = p;
-				}
+                p.addDomino(domino);
+                getDominosAvailable().remove(index);
 
-			}
-		}
-		
-		last.setToken(true);
+                if (domino.getSide1() == domino.getSide2()
+                        && domino.getSide1() + domino.getSide2() > biggestBushwacker) {
+                    biggestBushwacker = domino.getSide1() + domino.getSide2();
+                    last = p;
+                }
 
-	}
+                /*
+                 * If no there Bushwacker raffled, start that has the domino
+                 * with the largest sum of sides.
+                 */
+                if (biggestBushwacker == 0
+                        && domino.getSide1() + domino.getSide2() > biggestDomino) {
+                    biggestDomino = domino.getSide1() + domino.getSide2();
+                    last = p;
+                }
 
-	/**
-	 * Generate all dominos.
-	 */
-	private void generateDominos() {
-		for (int i = 0; i <= 6; i++) {
-			for (int j = i; j <= 6; j++) {
-				getDominosAvailable().add(new Domino(i, j));
-			}
-		}
-	}
+            }
+        }
 
-	/**
-	 * Get the next id of the sequence room based on an id
-	 * 
-	 * @param id
-	 * @return next id of the sequence room
-	 */
-	private int nextId(int id) {
+        last.setToken(true);
 
-		// Next id
-		int result = ++id;
+    }
 
-		// Check quantity jugadores in room.
-		if (result < 1 || result > getPlayers().size()) {
-			result = 1;
-		}
+    private void generateDominos() {
+        for (int i = 0; i <= 6; i++) {
+            for (int j = i; j <= 6; j++) {
+                getDominosAvailable().add(new Domino(i, j));
+            }
+        }
+    }
 
-		return result;
-	}
+    private int nextId(int id) {
 
-	/**
-	 * Jugador action of put a domino on board. This method moves the domino from
-	 * the player's hands to the table.
-	 * 
-	 * @param domino
-	 * @param side
-	 * @param username
-	 * @return true if the move carreid.
-	 */
-	public boolean putOnBoard(Domino domino, String side, String username) {
+        int result = ++id;
 
-		boolean result = false;
-		
-		//Execute moviment
-		if (putOnBoard(domino, side)) {
-			getPlayer(username).removeDomino(domino);
+        if (result < 1 || result > getPlayers().size()) {
+            result = 1;
+        }
 
-			/*
-			 * Check if game is finished. There are two possibilities: a) The
-			 * player has no domino. b) No more moves.
-			 */
-			if (getPlayer(username).getDominos().size() == 0
-					|| !hasPossibleMoves()) {
-				setFinishedGame(true);
-			}
+        return result;
+    }
 
-			result = true;
-		}
+    public boolean putOnBoard(Domino domino, String side, String username) {
 
-		return result;
-	}
-	
-	/**
-	 * 
-	 * @return The player who is current playing.
-	 */
-	public Jugador whoIsPlaying() {
-		
-		Jugador result = null;
+        boolean result = false;
 
-		for (Jugador p : getPlayers()) {
-			if (p.isToken()) {
-				result = p;
-				break;
-			}
-		}
+        if (putOnBoard(domino, side)) {
+            getPlayer(username).removeDomino(domino);
 
-		return result;
-	}
-	
-	/**
-	 * Get to player the first domino in the stack available
-	 *  
-	 * @param player
-	 * @return domino
-	 */
-	public boolean pushAvaliableDominos(Jugador player) {
+            if (getPlayer(username).getDominos().size() == 0
+                    || !hasPossibleMoves()) {
+                setFinishedGame(true);
+            }
 
-		boolean result = false;
-		
-		//Check if there domino in the stacks
-		if (getDominosAvailable().size() > 0) {
-			Domino domino = getDominosAvailable().get(0);
-			player.addDomino(domino);
-			getDominosAvailable().remove(0);
-			result = true;
-		}
+            result = true;
+        }
 
-		return result;
-	}
-	
-	/**
-	 * Check there are still moves.
-	 * 
-	 * @return true if exists.
-	 */
-	private boolean hasPossibleMoves() {
+        return result;
+    }
 
-		boolean result = false;
-		int leftNumberAvailable = -1;
-		int rightNumberAvailable = -1;
+    public Jugador whoIsPlaying() {
 
-		// Get number available each side of the board.
-		if (getDominoCenter() != null) {
-			leftNumberAvailable = getLastDominoBoard(Parametros.LEFT)
-					.getLeftSide();
-			rightNumberAvailable = getLastDominoBoard(Parametros.RIGHT)
-					.getRightSide();
-		}
+        Jugador result = null;
 
-		// Checks if any player has a available number
-		for (Jugador player : getPlayers()) {
-                    if (!player.getDominos().isEmpty()){
-			for (Domino domino : player.getDominos()) {
-				if (domino.getSide1() == leftNumberAvailable
-						|| domino.getSide1() == rightNumberAvailable
-						|| domino.getSide2() == leftNumberAvailable
-						|| domino.getSide2() == rightNumberAvailable) {
+        for (Jugador p : getPlayers()) {
+            if (p.isToken()) {
+                result = p;
+                break;
+            }
+        }
 
-					result = true;
-					break;
-				}
-			}
-                    } else{
-                        result = false;
+        return result;
+    }
+
+    public boolean pushAvaliableDominos(Jugador player) {
+
+        boolean result = false;
+
+        if (getDominosAvailable().size() > 0) {
+            Domino domino = getDominosAvailable().get(0);
+            player.addDomino(domino);
+            getDominosAvailable().remove(0);
+            result = true;
+        }
+
+        return result;
+    }
+
+    private boolean hasPossibleMoves() {
+
+        boolean result = false;
+        int leftNumberAvailable = -1;
+        int rightNumberAvailable = -1;
+
+        if (getDominoCenter() != null) {
+            leftNumberAvailable = getLastDominoBoard(Parametros.LEFT)
+                    .getLeftSide();
+            rightNumberAvailable = getLastDominoBoard(Parametros.RIGHT)
+                    .getRightSide();
+        }
+
+        for (Jugador player : getPlayers()) {
+            if (!player.getDominos().isEmpty()) {
+                for (Domino domino : player.getDominos()) {
+                    if (domino.getSide1() == leftNumberAvailable
+                            || domino.getSide1() == rightNumberAvailable
+                            || domino.getSide2() == leftNumberAvailable
+                            || domino.getSide2() == rightNumberAvailable) {
+
+                        result = true;
                         break;
                     }
-		}
+                }
+            } else {
+                result = false;
+                break;
+            }
+        }
 
-		return result;
+        return result;
 
-	}
+    }
 
-	public Jugador whoWon() {
+    public Jugador whoWon() {
 
-		Jugador result = null;
-                int puntaje = 0;
-		if (isFinishedGame()) {
-			for (Jugador player : getPlayers()) {
-				if (player.getDominos().size() == 0) {
-					result = player;
-				//	break;
-				}else{
-                                    for (Domino d : player.getDominos()){
-                                        puntaje = puntaje + d.getPuntos();
-                                    }
-                                }
-			}
-		}
-                result.setPuntaje(puntaje);
-		return result;
-	}
+        Jugador result = null;
+        int puntaje = 0;
+        if (isFinishedGame()) {
+            for (Jugador player : getPlayers()) {
+                if (player.getDominos().size() == 0) {
+                    result = player;
 
-	// Getters and Setters
+                } else {
+                    for (Domino d : player.getDominos()) {
+                        puntaje = puntaje + d.getPuntos();
+                    }
+                }
+            }
+        }
+        result.setPuntaje(puntaje);
+        return result;
+    }
 
-	public int getId() {
-		return id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public boolean isGameStarted() {
-		return gameStarted;
-	}
+    public boolean isGameStarted() {
+        return gameStarted;
+    }
 
-	public void setGameStarted(boolean gameStarted) {
-		this.gameStarted = gameStarted;
-	}
+    public void setGameStarted(boolean gameStarted) {
+        this.gameStarted = gameStarted;
+    }
 
-	public Tablero getDominoCenter() {
-		return dominoCenter;
-	}
+    public Tablero getDominoCenter() {
+        return dominoCenter;
+    }
 
-	public void setDominoCenter(Tablero boardNode) {
-		this.dominoCenter = boardNode;
-	}
+    public void setDominoCenter(Tablero boardNode) {
+        this.dominoCenter = boardNode;
+    }
 
-	public List<Domino> getDominosAvailable() {
-		return dominosAvailable;
-	}
+    public List<Domino> getDominosAvailable() {
+        return dominosAvailable;
+    }
 
-	public List<Jugador> getPlayers() {
-		return jugadores;
-	}
+    public List<Jugador> getPlayers() {
+        return jugadores;
+    }
 
-	private void setPlayers(List<Jugador> players) {
-		this.jugadores = players;
-	}
+    private void setPlayers(List<Jugador> players) {
+        this.jugadores = players;
+    }
 
-	private void setDominosAvailable(List<Domino> dominosAvailable) {
-		this.dominosAvailable = dominosAvailable;
-	}
+    private void setDominosAvailable(List<Domino> dominosAvailable) {
+        this.dominosAvailable = dominosAvailable;
+    }
 
-	public boolean isFinishedGame() {
-		return finishedGame;
-	}
+    public boolean isFinishedGame() {
+        return finishedGame;
+    }
 
-	public void setFinishedGame(boolean finishedGame) {
-		this.finishedGame = finishedGame;
-	}
+    public void setFinishedGame(boolean finishedGame) {
+        this.finishedGame = finishedGame;
+    }
 
 }

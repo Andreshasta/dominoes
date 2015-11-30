@@ -111,42 +111,7 @@ public class Servidor {
         }
     }
 
-    /**
-     * Get all clients connections.
-     *
-     * @return List of connections
-     */
-    public List<Conexion> getClients() {
-        return clients;
-    }
-
-    /**
-     * Start game...
-     */
-    /*
-     * public void startGame() { // The game can only be started once. if
-     * (!room.isGameStarted()) {
-     * 
-     * validClients();
-     * 
-     * int id = 0;
-     * 
-     * for (Conexion connection : clients) { Jugador player = new Jugador();
-     * player.setId(++id); player.setUsername(connection.getUsername());
-     * room.addPlayers(player); }
-     * 
-     * room.start();
-     * 
-     * // Send a message all clients to update the room status.
-     * sendMsgToAll(Util.prepareMsg(Acciones.UPDATE_ROOM, room));
-     * 
-     * }
-     * 
-     * }
-     */
-    /**
-     * Start game...
-     */
+    
     public boolean startGame(List<String> usernamePlayers) {
 
         boolean canStart = true;

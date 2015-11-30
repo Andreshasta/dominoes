@@ -72,7 +72,7 @@ public class Conexion extends Thread {
 
     }
 
-    // O tratamento dos parametros vai ser feito conforme o tipo da ação
+   
     private void processMessage(Object message) {
 
         if (message instanceof Map) {
@@ -106,8 +106,7 @@ public class Conexion extends Thread {
 
                 case Acciones.GIVEME_ROOM:
 
-				// The client can only request the room, if the game is started
-                    // and is in its turn.
+
                     if (server.getRoomPlayer(username).isGameStarted()
                             && server.getRoomPlayer(username)
                             .getPlayer(this.username).isToken()) {
@@ -120,8 +119,7 @@ public class Conexion extends Thread {
 
                 case Acciones.UPDATE_ROOM:
 
-				// The client can only update the room, if the game is started
-                    // and is in its turn.
+
                     if (parameter instanceof Sala) {
                         Sala room = server.getRoomPlayer(username);
                         if (room.isGameStarted()
@@ -235,18 +233,7 @@ public class Conexion extends Thread {
                                 "El juego inicio");
                         server.sendMsgToPlayers(msg, server.getRoomPlayer(username));
                     }
-                    /*
-                     * msg = Util.prepareMsg(Acciones.MESSAGE, "Wating for more " +
-                     * (Parameters.MAX_NUMBER_OF_PLAYERS - server
-                     * .getClients().size()) + " player(s).");
-                     * server.sendMsgToAll(msg);
-                     * 
-                     * if (server.getClients().size() ==
-                     * Parameters.MAX_NUMBER_OF_PLAYERS) { msg =
-                     * Util.prepareMsg(Acciones.MESSAGE,
-                     * "Let's Go! The game will be started...");
-                     * server.sendMsgToAll(msg); server.startGame(); }
-                     */
+                  
 
                     break;
 

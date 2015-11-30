@@ -2,62 +2,56 @@ package DominoBase.modelo;
 
 import java.io.Serializable;
 
-public class Invitacion implements Serializable{
-	
-	private static final long serialVersionUID = -4514318087681238403L;
+public class Invitacion implements Serializable {
 
-	private String issuing;
-	
-	private String receptor;
-	
-	private String status;
-	
-	public static final String ACEPTADO = "Aceptado";
-	public static final String PENDIENTE = "Pendiente";
-	public static final String RECHAZAR = "Rechazado";
-	
-	public Invitacion(String issuing, String recptor) {
-		setIssuing(issuing);
-		setReceptor(recptor);
-		setStatus(PENDIENTE);
-	}
+    private static final long serialVersionUID = -4514318087681238403L;
 
-	
-	public String getIssuing() {
-		return issuing;
-	}
+    private String issuing;
 
+    private String receptor;
 
-	public void setIssuing(String issuing) {
-		this.issuing = issuing;
-	}
+    private String status;
 
+    public static final String ACEPTADO = "Aceptado";
+    public static final String PENDIENTE = "Pendiente";
+    public static final String RECHAZAR = "Rechazado";
 
-	public String getReceptor() {
-		return receptor;
-	}
+    public Invitacion(String issuing, String recptor) {
+        setIssuing(issuing);
+        setReceptor(recptor);
+        setStatus(PENDIENTE);
+    }
 
+    public String getIssuing() {
+        return issuing;
+    }
 
-	public void setReceptor(String receptor) {
-		this.receptor = receptor;
-	}
+    public void setIssuing(String issuing) {
+        this.issuing = issuing;
+    }
 
-	
-	public String getStatus() {
-		return status;
-	}
+    public String getReceptor() {
+        return receptor;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	
-	public void accept() {
-		setStatus(ACEPTADO);
-	}
-	
-	public void refuse() {
-		setStatus(RECHAZAR);
-	}
-	
-	
+    public void setReceptor(String receptor) {
+        this.receptor = receptor;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void accept() {
+        setStatus(ACEPTADO);
+    }
+
+    public void refuse() {
+        setStatus(RECHAZAR);
+    }
+
 }

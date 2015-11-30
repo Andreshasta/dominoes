@@ -4,23 +4,16 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Represent who is playing
- */
 public class Jugador implements Serializable {
 
     private static final long serialVersionUID = -7414266462219657287L;
 
-    // Determines a sequence of the game. 
     private int id;
 
-    // Dominos in the hands of the player.
     private List<Domino> dominos;
 
-    // Identifies the player. Unique identifier in the whole game.
     private String username;
 
-    // Determines if the player can play.
     private boolean token;
 
     private int puntaje;
