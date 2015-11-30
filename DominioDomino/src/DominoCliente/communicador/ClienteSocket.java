@@ -17,7 +17,9 @@ public class ClienteSocket {
 	private Mensajero writer;
 
 	public ClienteSocket() throws UnknownHostException, IOException {
-		socket = new Socket("127.0.0.1", 7000);
+		//socket = new Socket("127.0.0.1", 7000);
+                System.out.println("ClienteSocket.ClienteSocket dir "+ DirServidor.getDireccion());
+		socket = new Socket(DirServidor.getDireccion(), 7000);
 		writer = new Mensajero(socket.getOutputStream());
 		reader = new Lector(socket.getInputStream());
 		writer.flush();

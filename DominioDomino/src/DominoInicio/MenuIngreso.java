@@ -1,6 +1,7 @@
 package DominoInicio;
 
 import DominoCliente.InicioCliente;
+import DominoCliente.communicador.DirServidor;
 import DominoServidor.InicioServidor;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -10,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -77,7 +79,7 @@ public class MenuIngreso extends JFrame implements ActionListener, ChangeListene
         jbSalir.setActionCommand("SALIR");
         jbSalir.addActionListener(this);
         jbSalir.setEnabled(true);
-        
+
         lbAIniciar = new JLabel("");
         txDireccion = new JTextField("");
         txDireccion.setEnabled(false);
@@ -99,7 +101,7 @@ public class MenuIngreso extends JFrame implements ActionListener, ChangeListene
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand()=="SALIR"){
+        if (e.getActionCommand() == "SALIR") {
             System.exit(0);
         }
         if (e.getActionCommand() == "INICIAR") {
@@ -110,16 +112,25 @@ public class MenuIngreso extends JFrame implements ActionListener, ChangeListene
                 Ejecutor.ejecutar(server1);
             }
             if (iniCliente) {
-                Ejecutor.ejecutar(cliente);
+                if (!iniServidor) {
+                    if (txDireccion.getText().length() != 0) {
+                        DirServidor.setDireccion(txDireccion.getText());
+                        Ejecutor.ejecutar(cliente);
+                    }else{
+                        JOptionPane.showMessageDialog(this, "Es necesario una direccion IP", "Direccion IP", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    DirServidor.setDireccion("127.0.0.1");
+                    Ejecutor.ejecutar(cliente);
+                }
             }
-            dispose();
         }
-        if (e.getActionCommand() =="MAXIMOS"){
-            
+        if (e.getActionCommand() == "MAXIMOS") {
+
         }
-        if (e.getActionCommand() =="TUTORIAL"){
+        if (e.getActionCommand() == "TUTORIAL") {
         }
-        if (e.getActionCommand() =="CREDITOS"){
+        if (e.getActionCommand() == "CREDITOS") {
         }
     }
 
@@ -138,7 +149,7 @@ public class MenuIngreso extends JFrame implements ActionListener, ChangeListene
             }
             lbAIniciar.setText(lbAIniciar.getText() + " Cliente");
             iniCliente = true;
-        } else {
+        }else {
             iniCliente = false;
         }
         //panel.repaint();
