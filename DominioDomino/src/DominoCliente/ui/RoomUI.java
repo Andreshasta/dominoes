@@ -399,25 +399,25 @@ public class RoomUI extends JFrame {
 
 		JScrollPane recorre_1 = new JScrollPane();
 		recorre_1.setBounds(90, 69, 170, 183);
-		//lblmesa.add(recorre_1);
+		lblmesa.add(recorre_1);
 
 		list_left = new JList(BoardLeftList());
 		recorre_1.setViewportView(list_left);
 
 		JScrollPane recorre_2 = new JScrollPane();
 		recorre_2.setBounds(324, 67, 154, 189);
-		//lblmesa.add(recorre_2);
+		lblmesa.add(recorre_2);
 
 		list_right = new JList(BoardRightList());
 		recorre_2.setViewportView(list_right);
 
 		JLabel lblLeft = new JLabel("Izquierda");
 		lblLeft.setBounds(92, 50, 46, 14);
-		//lblmesa.add(lblLeft);
+		lblmesa.add(lblLeft);
 
 		JLabel lblRight = new JLabel("Derecha");
 		lblRight.setBounds(324, 50, 46, 14);
-		//lblmesa.add(lblRight);
+		lblmesa.add(lblRight);
 		
 		lblDominosAvaliables = new JLabel("Fichas disponibles:");
 		lblDominosAvaliables.setBounds(606, 11, 154, 14);
