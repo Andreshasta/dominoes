@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DominoInicio;
+package DominoInicio.cargador;
 
 import java.net.InetAddress;
 import java.net.InterfaceAddress;

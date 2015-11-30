@@ -1,10 +1,13 @@
-package DominoInicio;
+package DominoInicio.ui;
 
 import DominoBase.modelo.AdministrarArchivo;
 import DominoCliente.InicioCliente;
 import DominoCliente.communicador.DirServidor;
+import DominoInicio.cargador.DatosServidor;
+import DominoInicio.cargador.Ejecutor;
 import DominoServidor.InicioServidor;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,10 +39,13 @@ public class MenuIngreso extends JFrame implements ActionListener, ChangeListene
     private boolean iniServidor;
     private boolean iniCliente;
     private String IP;
+    private PuntajesMaximos pm;
 
     public MenuIngreso() {
         setTitle("Ingreso juego");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setMinimumSize(new Dimension(200, 200));
+        
         jpContentPane = new JPanel();
         jpContentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         jpContentPane.setLayout(new BorderLayout(0, 0));
@@ -127,8 +133,7 @@ public class MenuIngreso extends JFrame implements ActionListener, ChangeListene
             }
         }
         if (e.getActionCommand() == "MAXIMOS") {
-            AdministrarArchivo aa = new AdministrarArchivo();
-            aa.cargarArchivo();
+            pm = new PuntajesMaximos();
         }
         if (e.getActionCommand() == "TUTORIAL") {
         }

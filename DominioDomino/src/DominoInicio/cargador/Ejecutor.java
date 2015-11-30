@@ -1,4 +1,4 @@
-package DominoInicio;
+package DominoInicio.cargador;
 
 import DominoBase.modelo.Ejecutable;
 

@@ -103,7 +103,7 @@ public class AdministrarArchivo {
             System.out.println("-- EOF --");
             ois.close();
             bis.close();
-            archivo.delete();
+            //archivo.delete();
             return listaInt;
         } finally {
             ois.close();
@@ -145,7 +145,7 @@ public class AdministrarArchivo {
             try {
                 oos.close();
                 bos.close();
-                archivo.delete();
+                //archivo.delete();
             } catch (Exception ex2) {
                 System.err.println("guardar2");
                 ex2.printStackTrace();
