@@ -164,8 +164,8 @@ public class Administrador {
     public void invite(String username) {
         int amountInvite = 0;
         for (Invitacion invite : getInvites()) {
-            if (invite.getStatus().equals(Invitacion.ACCPETED)
-                    || invite.getStatus().equals(Invitacion.PENDENT)) {
+            if (invite.getStatus().equals(Invitacion.ACEPTADO)
+                    || invite.getStatus().equals(Invitacion.PENDIENTE)) {
                 amountInvite++;
             }
         }
@@ -249,7 +249,7 @@ public class Administrador {
         List<String> usersPlayers = new ArrayList<String>();
         usersPlayers.add(myUsername);
         for (Invitacion invite : invites) {
-            if (invite.getStatus().equals(Invitacion.ACCPETED)) {
+            if (invite.getStatus().equals(Invitacion.ACEPTADO)) {
                 usersPlayers.add(invite.getReceptor());
             }
         }

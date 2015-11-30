@@ -12,14 +12,14 @@ public class Invitacion implements Serializable{
 	
 	private String status;
 	
-	public static final String ACCPETED = "accepted";
-	public static final String PENDENT = "pendent";
-	public static final String REFUSED = "refused";
+	public static final String ACEPTADO = "Aceptado";
+	public static final String PENDIENTE = "Pendiente";
+	public static final String RECHAZAR = "Rechazado";
 	
 	public Invitacion(String issuing, String recptor) {
 		setIssuing(issuing);
 		setReceptor(recptor);
-		setStatus(PENDENT);
+		setStatus(PENDIENTE);
 	}
 
 	
@@ -52,11 +52,11 @@ public class Invitacion implements Serializable{
 	}
 	
 	public void accept() {
-		setStatus(ACCPETED);
+		setStatus(ACEPTADO);
 	}
 	
 	public void refuse() {
-		setStatus(REFUSED);
+		setStatus(RECHAZAR);
 	}
 	
 	

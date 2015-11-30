@@ -134,7 +134,7 @@ public class PendingInvitesUI extends JFrame {
 
                 String[] dataList = new String[pending.size()];
                 for (Invitacion invite : pending) {
-                    if (invite.getStatus().equals(Invitacion.PENDENT)) {
+                    if (invite.getStatus().equals(Invitacion.PENDIENTE)) {
                         dataList[i] = invite.getIssuing();
                         if (invite.getIssuing().equals(currentUserSelected)) {
                             actualIndex = i;

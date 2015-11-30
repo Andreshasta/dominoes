@@ -207,7 +207,7 @@ public class Conexion extends Thread {
                             responseInvite.getReceptor());
                     if (serverInvite != null) {
                         serverInvite.setStatus(responseInvite.getStatus());
-                        if (serverInvite.getStatus().equals(Invitacion.ACCPETED)
+                        if (serverInvite.getStatus().equals(Invitacion.ACEPTADO)
                                 && !isAcceptedInvite()) {
                             setAcceptedInvite(true);
                         }

@@ -257,12 +257,12 @@ public class OnlineUsersUI extends JFrame {
 				for (int i = 0; i < invites.size(); i++) {
 					dataInvite[i] = invites.get(i).getReceptor() + "  -  "
 							+ invites.get(i).getStatus();
-					if (invites.get(i).getStatus().equals(Invitacion.ACCPETED)) {
+					if (invites.get(i).getStatus().equals(Invitacion.ACEPTADO)) {
 						ableBtnInicar = true;
 					}
 					
-					if (invites.get(i).getStatus().equals(Invitacion.ACCPETED)
-							|| invites.get(i).getStatus().equals(Invitacion.PENDENT)) {
+					if (invites.get(i).getStatus().equals(Invitacion.ACEPTADO)
+							|| invites.get(i).getStatus().equals(Invitacion.PENDIENTE)) {
 						amountInvite++;
 					}
 				}
@@ -285,7 +285,7 @@ public class OnlineUsersUI extends JFrame {
 			int pendingAmount = 0;
 
 			for (Invitacion invite : pending) {
-				if (invite.getStatus().equals(Invitacion.PENDENT)) {
+				if (invite.getStatus().equals(Invitacion.PENDIENTE)) {
 					pendingAmount++;
 				}
 			}
