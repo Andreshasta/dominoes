@@ -1,31 +1,65 @@
 MANUAL DE USUARIO
 DOMINO
-Bienvenido al juego domino, un juego hecho para divertir al usuario, a través de este sencillo manual aprenderá a usarlo.
-Al iniciar el juego aparecerá una pantalla en la cual usted deberá escoger si será invitado o administrador, teniendo en cuenta que el administrador será quien cree la partida. Una vez que el administrador haya creado la partida los jugadores que actuarán como invitados se conectarán como usuarios e ingresarán la IP del servidor en el campo de IP.
+Bienvenido al juego domino, un juego hecho para divertir al usuario, 
+a través de este sencillo manual aprenderá a usarlo.
+Al iniciar el juego aparecerá una pantalla en la cual usted deberá 
+escoger si será invitado o administrador, teniendo en cuenta que el
+administrador será quien cree la partida. Una vez que el administrador 
+haya creado la partida los jugadores que actuarán como invitados se 
+conectarán como usuarios e ingresarán la IP del servidor en el campo de IP.
 En el botón “Max. Puntajes” encontrará los puntajes más altos registrados
 En el botón Tutorial encontrará un manual de cómo hacer uso del juego.
 En el botón créditos podrá ver información del proyecto y sus creadores.
 En el botón salir se finaliza el programa.
-Después de ingresar como cliente o administrador deberá ingresar el nombre de usuario con el cual jugará, hacer click en entrar.
-En la siguiente ventana encontrará una interacción en red, donde podrá ver inicialmente que usuarios están conectados. El juego permitirá ver todos los usuarios en linea, pero solo permitirá hasta un máximo de 4 usuarios en juego.
-Usted debe seleccionar con cuales usuarios desea jugar, para esto los seleccionará e invitará haciendo click en el botón “Invitar”. El nuevo estado será pendiente, donde se espera una respuesta por parte de los demás usuarios de aceptar o rechazar la invitación.
-En la pantalla de los usuarios invitados, para aceptar las invitaciones se mostrarán la invitaciones pendientes en el boton “Invitaciones”.
-Se podrá aceptar, rechazar o dejar en cola la invitación, para ello hacer click en “Invitaciones” y aceptar las que se deseen recibir.
+Después de ingresar como cliente o administrador deberá ingresar el nombre 
+de usuario con el cual jugará, hacer click en entrar.
+En la siguiente ventana encontrará una interacción en red, donde podrá ver 
+inicialmente que usuarios están conectados. El juego permitirá ver todos 
+los usuarios en linea, pero solo permitirá hasta un máximo de 4 usuarios 
+en juego.
+Usted debe seleccionar con cuales usuarios desea jugar, para esto los 
+seleccionará e invitará haciendo click en el botón “Invitar”. El nuevo 
+estado será pendiente, donde se espera una respuesta por parte de los 
+demás usuarios de aceptar o rechazar la invitación.
+En la pantalla de los usuarios invitados, para aceptar las invitaciones 
+se mostrarán la invitaciones pendientes en el boton “Invitaciones”.
+Se podrá aceptar, rechazar o dejar en cola la invitación, para ello hacer 
+click en “Invitaciones” y aceptar las que se deseen recibir.
 Las solicitudes que se han aceptado aparecerán en la pantalla inicial.
-A continuación se mostrará la pantalla del juego Domino donde interactuará con los demás jugadores teniendo en cuenta las reglas del juego:
+A continuación se mostrará la pantalla del juego Domino donde interactuará 
+con los demás jugadores teniendo en cuenta las reglas del juego:
 REGLAS DEL JUEGO
-El dominó (galicismo de domino) es un juego de mesa en el que se emplean unas fichas rectangulares, generalmente blancas por la cara y negras por el envés, divididas en dos cuadrados, cada uno de los cuales lleva marcado de cero a un determinado número de puntos. El juego completo de fichas de dominó consta normalmente de 28 piezas.
+El dominó (galicismo de domino) es un juego de mesa en el que se emplean 
+unas fichas rectangulares, generalmente blancas por la cara y negras por 
+el envés, divididas en dos cuadrados, cada uno de los cuales lleva marcado 
+de cero a un determinado número de puntos. El juego completo de fichas de 
+dominó consta normalmente de 28 piezas.
 Construcción y distribución:
-•	Cada jugador recibe 7 fichas al empezar una ronda. Si en la partida hay menos de 4 jugadores, las fichas restantes se guardan en el pozo.
+- Cada jugador recibe 7 fichas al empezar una ronda. Si en la partida hay 
+menos de 4 jugadores, las fichas restantes se guardan en el pozo.
 Construcción durante el juego:
-•	Inicia la ronda el jugador que tenga la ficha con el doble más alto, en caso de no tener dobles ninguno de los jugadores, comenzará el jugador que tenga la ficha más alta.
+- Inicia la ronda el jugador que tenga la ficha con el doble más alto, en 
+caso de no tener dobles ninguno de los jugadores, comenzará el jugador que 
+tenga la ficha más alta.
 Movimientos:
-•	En su turno, cada jugador debe colocar una de sus fichas en uno de los 2 extremos abiertos, de tal forma que los puntos de uno de los lados de la ficha coincida con los puntos del extremo donde se está colocando. Los dobles se colocan de forma transversal para facilitar su localización.
-•	Una vez que el jugador ha colocado la ficha en su lugar, su turno termina y pasa al siguiente jugador.
-•	Si un jugador no puede jugar, debe “robar” del pozo tantas fichas como sean necesarias. Si no quedan fichas en el pozo, pasará el turno al siguiente jugador.
+- En su turno, cada jugador debe colocar una de sus fichas en uno de los 
+2 extremos abiertos, de tal forma que los puntos de uno de los lados de 
+la ficha coincida con los puntos del extremo donde se está colocando. Los 
+dobles se colocan de forma transversal para facilitar su localización.
+- Una vez que el jugador ha colocado la ficha en su lugar, su turno 
+termina y pasa al siguiente jugador.
+- Si un jugador no puede jugar, debe “robar” del pozo tantas fichas como 
+sean necesarias. Si no quedan fichas en el pozo, pasará el turno al 
+siguiente jugador.
 Fin de la partida:
 La partida termina cuando se da alguna de las siguientes situaciones:
-•	Un jugador coloca su última ficha en la mesa, siendo éste el ganador de la partida.
-•	Nadie puede colocar más fichas. En ese momento se dice que la partida está bloqueada. Los jugadores contarán los puntos de las fichas que les queden y el jugador con menos puntos es el ganador.
-•	Pudiera darse el caso de tener los mismos puntos por lo que ganaría el jugador que fuera ‘mano’ o esté más cerca del jugador que lo fuera.
-•	El ganador de la partida se llevará la suma de los puntos de las fichas del resto de jugadores.
+- Un jugador coloca su última ficha en la mesa, siendo éste el ganador de 
+la partida.
+- Nadie puede colocar más fichas. En ese momento se dice que la partida 
+está bloqueada. Los jugadores contarán los puntos de las fichas que les 
+queden y el jugador con menos puntos es el ganador.
+- Pudiera darse el caso de tener los mismos puntos por lo que ganaría el 
+jugador que fuera ‘mano’ o esté más cerca del jugador que lo fuera.
+- El ganador de la partida se llevará la suma de los puntos de las fichas 
+del resto de jugadores.
+

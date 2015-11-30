@@ -326,8 +326,8 @@ public class Sala implements Serializable {
                     }
                 }
             }
+            result.setPuntaje(puntaje);
         }
-        result.setPuntaje(puntaje);
         return result;
     }
 

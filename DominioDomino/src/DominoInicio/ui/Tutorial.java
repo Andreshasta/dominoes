@@ -6,8 +6,8 @@
 package DominoInicio.ui;
 
 import DominoBase.modelo.AdministrarArchivo;
-import DominoBase.modelo.Jugador;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -40,14 +40,14 @@ public class Tutorial extends JFrame implements ActionListener {
     public Tutorial() {
         setTitle("Tutorial");
         //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+        this.setMaximumSize(new Dimension(200, 200));
         jpContentPane = new JPanel();
         jpContentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         jpContentPane.setLayout(new BorderLayout(0, 0));
         setContentPane(jpContentPane);
         
         jpPrincipal = new JPanel();
-        jpPrincipal.setLayout(new GridLayout(3,1));
+        jpPrincipal.setLayout(new GridLayout(2,1));
         lbTitulo = new JLabel("¿COMO JUGAR?", JLabel.CENTER);
         jtaJugadores = new JTextArea();
         
@@ -70,6 +70,7 @@ public class Tutorial extends JFrame implements ActionListener {
     public void asignarDatos(){
         for (String linea : leerDatos()){
             jtaJugadores.setText( jtaJugadores.getText() + linea +"\n" );
+            //jtaJugadores.setText( jtaJugadores.getText() + linea );
         }
     }
     
