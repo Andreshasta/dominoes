@@ -50,15 +50,17 @@ public class Tutorial extends JFrame implements ActionListener {
         jpPrincipal.setLayout(new GridLayout(3,1));
         lbTitulo = new JLabel("¿COMO JUGAR?", JLabel.CENTER);
         jtaJugadores = new JTextArea();
+        
+        jsDeslice=new JScrollPane();
+        jtaJugadores.add(jsDeslice);
         asignarDatos();
-        jsDeslice=new JScrollPane(jtaJugadores);
-        jbVolver = new JButton("Volver");
-        jbVolver.setActionCommand("VOLVER");
-        jbVolver.addActionListener(this);
+//        jbVolver = new JButton("Volver");
+//        jbVolver.setActionCommand("VOLVER");
+//        jbVolver.addActionListener(this);
         
         jpPrincipal.add(lbTitulo);
         jpPrincipal.add(jtaJugadores);
-        jpPrincipal.add(jbVolver);
+        //jpPrincipal.add(jbVolver);
         
         jpContentPane.add(jpPrincipal);
         this.pack();
@@ -76,9 +78,9 @@ public class Tutorial extends JFrame implements ActionListener {
         ArrayList<String> resultados = new ArrayList<>();
         aa.setArchivoHistJugadores("tutorial.txt");
         String resultado="";
-        aa.cargarArchivo();
-        for (Jugador j : aa.getListaJugadores()){
-            resultado = j.getUsername() + j.getPuntaje();
+    
+        for (String j : aa.getListaTexto()){
+            resultado = j;
             resultados.add(resultado);
         }
         return resultados;

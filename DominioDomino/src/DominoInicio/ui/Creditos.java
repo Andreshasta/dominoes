@@ -8,6 +8,7 @@ package DominoInicio.ui;
 import DominoBase.modelo.AdministrarArchivo;
 import DominoBase.modelo.Jugador;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -41,7 +42,7 @@ public class Creditos extends JFrame implements ActionListener {
     public Creditos() {
         setTitle("Creditos");
         //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        this.setMaximumSize(new Dimension(150, 300));
         jpContentPane = new JPanel();
         jpContentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         jpContentPane.setLayout(new BorderLayout(0, 0));
@@ -53,13 +54,13 @@ public class Creditos extends JFrame implements ActionListener {
         jtaJugadores = new JTextArea();
         asignarDatos();
         jsDeslice = new JScrollPane(jtaJugadores);
-        jbVolver = new JButton("Volver");
-        jbVolver.setActionCommand("VOLVER");
-        jbVolver.addActionListener(this);
+//        jbVolver = new JButton("Volver");
+//        jbVolver.setActionCommand("VOLVER");
+//        jbVolver.addActionListener(this);
 
         jpPrincipal.add(lbTitulo);
         jpPrincipal.add(jtaJugadores);
-        jpPrincipal.add(jbVolver);
+        //jpPrincipal.add(jbVolver);
 
         jpContentPane.add(jpPrincipal);
         this.pack();
