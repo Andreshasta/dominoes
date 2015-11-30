@@ -26,6 +26,10 @@ public class AdministrarArchivo {
         archivoHistJugadores = "jugadores.dat";
     }
 
+    public void setArchivoHistJugadores(String nombre) {
+        this.archivoHistJugadores = nombre;
+    }
+
     public void cargarArchivo() {
         listaJugadores = new ArrayList<>();
         int i = 0;
