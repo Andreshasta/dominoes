@@ -84,7 +84,7 @@ public class Wait extends JFrame {
 
     public void play() {
         dispose();
-        RoomUI room = new RoomUI(manager);
+        JuegoUI room = new JuegoUI(manager);
         room.setVisible(true);
     }
 

@@ -183,7 +183,7 @@ public class OnlineUsersUI extends JFrame {
 				if(manager.getRoom().isGameStarted() && !manager.getRoom().isFinishedGame()) {
 					finished = true;
 					dispose();
-					RoomUI room = new RoomUI(manager);
+					JuegoUI room = new JuegoUI(manager);
 					room.setVisible(true);
 				}
 				

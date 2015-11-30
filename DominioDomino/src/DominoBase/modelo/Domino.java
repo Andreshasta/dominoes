@@ -9,9 +9,7 @@ import java.io.Serializable;
 public class Domino implements Serializable {
 
 	private static final long serialVersionUID = -7534721277825768082L;
-
 	private int ladoA;
-
 	private int ladoB;
 
 	public Domino(int ladoA, int ladoB) {
