@@ -23,4 +23,9 @@ public final class Parametros {
 	
 	public static final String SIDE2 = "side2";
 	
+        public static final int MAX_NUMBER_FICHAS_PLAYER = 7;
+        
+        public static final String PATH_IMAGES = "../../DominoCliente/images/";
+        
+        public static final int PORT_SERVER = 7000;
 }

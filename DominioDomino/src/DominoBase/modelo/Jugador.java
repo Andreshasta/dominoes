@@ -8,65 +8,74 @@ import java.util.List;
  * Represent who is playing
  */
 public class Jugador implements Serializable {
-	
-	private static final long serialVersionUID = -7414266462219657287L;
-	
-	// Determines a sequence of the game. 
-	private int id;
-	
-	// Dominos in the hands of the player.
-	private List<Domino> dominos;
-	
-	// Identifies the player. Unique identifier in the whole game.
-	private String username;
-	
-	// Determines if the player can play.
-	private boolean token;
-	
-	
-	public Jugador() {
-		dominos = new ArrayList<Domino>();
-		token = false;
-	}
-	
-	public String getUsername() {
-		return username;
-	}
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    private static final long serialVersionUID = -7414266462219657287L;
 
-	public List<Domino> getDominos() {
-		return dominos;
-	}
+    // Determines a sequence of the game. 
+    private int id;
 
-	public void setDominos(List<Domino> dominos) {
-		this.dominos = dominos;
-	}
+    // Dominos in the hands of the player.
+    private List<Domino> dominos;
 
-	public boolean isToken() {
-		return token;
-	}
+    // Identifies the player. Unique identifier in the whole game.
+    private String username;
 
-	public void setToken(boolean token) {
-		this.token = token;
-	}
-	
-	public int getId() {
-		return id;
-	}
+    // Determines if the player can play.
+    private boolean token;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    private int puntaje;
 
-	public void addDomino(Domino domino) {
-		dominos.add(domino);
-	}
+    public Jugador() {
+        dominos = new ArrayList<Domino>();
+        token = false;
+    }
 
-	public void removeDomino(Domino domino) {
-		dominos.remove(domino);
-	}
-	
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public List<Domino> getDominos() {
+        return dominos;
+    }
+
+    public void setDominos(List<Domino> dominos) {
+        this.dominos = dominos;
+    }
+
+    public boolean isToken() {
+        return token;
+    }
+
+    public void setToken(boolean token) {
+        this.token = token;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void addDomino(Domino domino) {
+        dominos.add(domino);
+    }
+
+    public void removeDomino(Domino domino) {
+        dominos.remove(domino);
+    }
+
+    public int getPuntaje() {
+        return puntaje;
+    }
+
+    public void setPuntaje(int puntaje) {
+        this.puntaje = puntaje;
+    }
+
 }

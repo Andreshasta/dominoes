@@ -20,9 +20,9 @@ public class Sala implements Serializable {
 	private int id;
 	
 	// Players in room
-	private List<Jugador> players;
+	private List<Jugador> jugadores;
 
-	// Dominos available for players
+	// Dominos available for jugadores
 	private List<Domino> dominosAvailable;
 
 	// The central domino on board
@@ -52,7 +52,7 @@ public class Sala implements Serializable {
 
 	/**
 	 * Add a player in room. However the room does not exceed the limit of
-	 * players.
+ jugadores.
 	 * 
 	 * @param player
 	 */
@@ -198,7 +198,7 @@ public class Sala implements Serializable {
 	}
 
 	/**
-	 * Makes the initial distribution of dominos for players. Each player must
+	 * Makes the initial distribution of dominos for jugadores. Each player must
 	 * have the same number of domino. The remainings should be available at the
 	 * table.
 	 */
@@ -208,8 +208,8 @@ public class Sala implements Serializable {
 		 * Calculates the quantity of dominos by player. The value must be
 		 * truncated and integer to not miss dominos
 		 */
-		int numberDominosByPlayer = (int) (getDominosAvailable().size() / players
-				.size());
+		//int numberDominosByPlayer = (int) (getDominosAvailable().size() / jugadores.size());
+                int numberDominosByPlayer = Parametros.MAX_NUMBER_FICHAS_PLAYER;
 
 		/*
 		 * Control variables
@@ -286,7 +286,7 @@ public class Sala implements Serializable {
 		// Next id
 		int result = ++id;
 
-		// Check quantity players in room.
+		// Check quantity jugadores in room.
 		if (result < 1 || result > getPlayers().size()) {
 			result = 1;
 		}
@@ -386,6 +386,7 @@ public class Sala implements Serializable {
 
 		// Checks if any player has a available number
 		for (Jugador player : getPlayers()) {
+                    if (!player.getDominos().isEmpty()){
 			for (Domino domino : player.getDominos()) {
 				if (domino.getSide1() == leftNumberAvailable
 						|| domino.getSide1() == rightNumberAvailable
@@ -396,7 +397,10 @@ public class Sala implements Serializable {
 					break;
 				}
 			}
-
+                    } else{
+                        result = false;
+                        break;
+                    }
 		}
 
 		return result;
@@ -406,16 +410,20 @@ public class Sala implements Serializable {
 	public Jugador whoWon() {
 
 		Jugador result = null;
-
+                int puntaje = 0;
 		if (isFinishedGame()) {
 			for (Jugador player : getPlayers()) {
 				if (player.getDominos().size() == 0) {
 					result = player;
-					break;
-				}
+				//	break;
+				}else{
+                                    for (Domino d : player.getDominos()){
+                                        puntaje = puntaje + d.getPuntos();
+                                    }
+                                }
 			}
 		}
-
+                result.setPuntaje(puntaje);
 		return result;
 	}
 
@@ -446,11 +454,11 @@ public class Sala implements Serializable {
 	}
 
 	public List<Jugador> getPlayers() {
-		return players;
+		return jugadores;
 	}
 
 	private void setPlayers(List<Jugador> players) {
-		this.players = players;
+		this.jugadores = players;
 	}
 
 	private void setDominosAvailable(List<Domino> dominosAvailable) {

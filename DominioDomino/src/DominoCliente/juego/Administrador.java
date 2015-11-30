@@ -5,6 +5,7 @@
  */
 package DominoCliente.juego;
 
+import DominoBase.modelo.AdministrarArchivo;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -123,8 +124,11 @@ public class Administrador {
             } else {
                 addUserMessage(won.getUsername() + " gano el juego!");
             }
+            AdministrarArchivo aa = new AdministrarArchivo();
+            aa.cargarArchivo();
+            aa.adicionarJugador(won);
+            aa.guardarDatos();
         }
-
         return result;
     }
 

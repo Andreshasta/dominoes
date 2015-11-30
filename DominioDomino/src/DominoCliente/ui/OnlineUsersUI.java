@@ -75,7 +75,8 @@ public class OnlineUsersUI extends JFrame {
 		btnConvidar = new JButton("Invitar");
 		btnConvidar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				convidar();
+				//convidar();
+				invitar();
 			}
 		});
 		btnConvidar.setBounds(503, 214, 153, 23);
@@ -147,7 +148,8 @@ public class OnlineUsersUI extends JFrame {
 		txtMsgChat.setText("");
 	}
 
-	private void convidar() {
+	//private void convidar() {
+	private void invitar() {
 		String userSelected = lstOnlineUsers.getSelectedValue();
 		manager.invite(userSelected);
 	}

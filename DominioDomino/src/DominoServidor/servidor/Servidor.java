@@ -45,8 +45,10 @@ public class Servidor {
     public void execute() {
         try {
 
-            server = new ServerSocket(7000);
-            System.out.println("Servidor ejecutando en el puerto 7000...");
+            //server = new ServerSocket(7000);
+            server = new ServerSocket(Parametros.PORT_SERVER);
+            //System.out.println("Servidor ejecutando en el puerto 7000...");
+            System.out.println("Servidor ejecutando en el puerto " + Parametros.PORT_SERVER + "...");
 
             while (true) {
                 Socket socket = server.accept();

@@ -7,7 +7,7 @@ package DominoCliente.ui;
 
 import DominoCliente.juego.Administrador;
 
-import java.awt.BorderLayout;
+//import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.DefaultListModel;
@@ -77,7 +77,7 @@ public class RoomUI extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -88,7 +88,7 @@ public class RoomUI extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.

@@ -1,5 +1,6 @@
 package DominoInicio;
 
+import DominoBase.modelo.AdministrarArchivo;
 import DominoCliente.InicioCliente;
 import DominoCliente.communicador.DirServidor;
 import DominoServidor.InicioServidor;
@@ -126,7 +127,8 @@ public class MenuIngreso extends JFrame implements ActionListener, ChangeListene
             }
         }
         if (e.getActionCommand() == "MAXIMOS") {
-
+            AdministrarArchivo aa = new AdministrarArchivo();
+            aa.cargarArchivo();
         }
         if (e.getActionCommand() == "TUTORIAL") {
         }

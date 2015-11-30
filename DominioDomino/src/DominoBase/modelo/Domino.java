@@ -1,5 +1,6 @@
 package DominoBase.modelo;
 
+import DominoBase.system.Parametros;
 import java.io.Serializable;
 
 /**
@@ -9,29 +10,29 @@ public class Domino implements Serializable {
 
 	private static final long serialVersionUID = -7534721277825768082L;
 
-	private int side1;
+	private int ladoA;
 
-	private int side2;
+	private int ladoB;
 
-	public Domino(int side1, int side2) {
-		setSide1(side1);
-		setSide2(side2);
+	public Domino(int ladoA, int ladoB) {
+		setSide1(ladoA);
+		setSide2(ladoB);
 	}
 
 	public int getSide1() {
-		return side1;
+		return ladoA;
 	}
 
 	public void setSide1(int side1) {
-		this.side1 = side1;
+		this.ladoA = side1;
 	}
 
 	public int getSide2() {
-		return side2;
+		return ladoB;
 	}
 
 	public void setSide2(int side2) {
-		this.side2 = side2;
+		this.ladoB = side2;
 	}
 
 	/**
@@ -41,9 +42,13 @@ public class Domino implements Serializable {
 	 * @return complete path of the image file.
 	 */
 	public String getImagePath() {
-		String rootPath = "/images/";
-		return rootPath + side1 + "x" + side2 + ".png";
+		//String rootPath = "/images/";
+		String rootPath = Parametros.PATH_IMAGES;
+		return rootPath + ladoA + "x" + ladoB + ".png";
 	}
+        public int getPuntos(){
+            return this.ladoA + this.ladoB;
+        }
 
 	/**
 	 * Method must used by client. When the object is placed in a string,
